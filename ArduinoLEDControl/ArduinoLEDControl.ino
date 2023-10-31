@@ -9,7 +9,7 @@
 #define GREENPIN 6
 #define BLUEPIN 3
  
-#define FADESPEED 5     // make this higher to slow down
+#define FADESPEED 6     // make this higher to slow down
 
 int serialInputVal = 0;
 
@@ -34,11 +34,11 @@ void loop() {
     Serial.println(serialInputVal);
   }
   int r, g, b;
-  analogWrite(BLUEPIN, b);
-  analogWrite(REDPIN, r);
-  analogWrite(GREENPIN, g);
+//  analogWrite(BLUEPIN, b);
+//  analogWrite(REDPIN, r);
+//  analogWrite(GREENPIN, g);
 
-/* example for color swirl
+// example for color swirl
   // fade from blue to violet
   for (r = 0; r < 256; r++) { 
     analogWrite(REDPIN, r);
@@ -69,5 +69,4 @@ void loop() {
     analogWrite(GREENPIN, g);
     delay(FADESPEED);
   }
-*/
 }
