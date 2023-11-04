@@ -5,6 +5,10 @@
     "express-ejs-layouts": "^2.5.1",
     "serialport": "^12.0.0"
   },
+  "scripts": {
+    "start": "node LEDcontrol.js",
+    "devStart": "nodemon LEDcontrol.js"
+  },
   "devDependencies": {
     "nodemon": "^3.0.1"
   }
