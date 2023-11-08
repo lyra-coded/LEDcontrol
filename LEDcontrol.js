@@ -6,12 +6,18 @@ const bodyParser = require('body-parser')
 const { SerialPort } = require('serialport')
 const { ReadlineParser } = require('@serialport/parser-readline')
 
+// add routers
+const indexRouter = require('./routes/index')
+
 app.set('view engine', 'ejs')
 app.set('views', (__dirname + 'views'))
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
 
+app.use('/', indexRouter)
+
+/*
 var readData = "";
 
 // listen for serial data
@@ -31,6 +37,6 @@ parser.on('data', (serialdata) => {
     console.log(serialdata);
     readData = serialdata;
 });
-
+*/
 // run server
 app.listen(process.env.PORT || 3000)
