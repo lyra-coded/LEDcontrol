@@ -8,6 +8,8 @@ const { ReadlineParser } = require('@serialport/parser-readline')
 
 // add routers
 const indexRouter = require('./routes/index')
+const noDeviceFoundRouter = require('./routes/noDeviceFound')
+const ledProfilesRouter = require('./routes/ledProfiles')
 
 app.set('view engine', 'ejs')
 app.set('views', (__dirname + '/views'))
@@ -16,8 +18,9 @@ app.use(expressLayouts)
 app.use(express.static('public'))
 
 app.use('/', indexRouter)
+app.use('/noDeviceFound', noDeviceFoundRouter)
+app.use('/ledProfiles', ledProfilesRouter)
 
-/*
 var readData = "";
 
 // listen for serial data
@@ -37,6 +40,5 @@ parser.on('data', (serialdata) => {
     console.log(serialdata);
     readData = serialdata;
 });
-*/
 // run server
 app.listen(process.env.PORT || 3000)
