@@ -9,7 +9,7 @@ const { ReadlineParser } = require('@serialport/parser-readline')
 // add routers
 const indexRouter = require('./routes/index')
 const noDeviceFoundRouter = require('./routes/noDeviceFound')
-const ledProfilesRouter = require('./routes/ledProfiles')
+const ledProfilesRouter = require('./routes/ledProfiles.js')
 
 app.set('view engine', 'ejs')
 app.set('views', (__dirname + '/views'))
