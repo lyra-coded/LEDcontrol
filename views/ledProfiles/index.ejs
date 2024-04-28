@@ -1,12 +1,30 @@
 <h2>Color Profiles</h2>
-Color Profiles Coming Soon
 
 <!-- <script src="a-color-picker.js"></script> -->
 
 <script src="https://cdn.jsdelivr.net/npm/a-color-picker@1.1.8/dist/acolorpicker.js"></script>
-<script src="../../routes/ledProfiles.js"></script>
+
+<!-- <script src="../public/scripts/sendColorToDevice.js"></script> -->
+
 <div class="picker"
     acp-color="#EFE9E7"
     acp-palette="PALETTE_MATERIAL_CHROME"
     acp-palette-editable> 
 </div>
+
+<script>
+    AColorPicker.from('.picker')
+    .on('change', (picker, color) => {
+        console.log(color)
+    })
+    .on('coloradd', (picker, color) => {
+        console.log(color)
+      // color added: color
+      // modified palette: picker.palette
+    })
+    .on('colorremove', (picker, color) => {
+        console.log(color)
+      // color removed: color
+      // modified palette: picker.palette
+    });
+</script>
