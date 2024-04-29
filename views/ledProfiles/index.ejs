@@ -4,27 +4,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/a-color-picker@1.1.8/dist/acolorpicker.js"></script>
 
-<!-- <script src="../public/scripts/sendColorToDevice.js"></script> -->
-
 <div class="picker"
     acp-color="#EFE9E7"
     acp-palette="PALETTE_MATERIAL_CHROME"
-    acp-palette-editable> 
+    acp-palette-editable
+    acp-show-hsl="no"
+    acp-show-hex="no"
+    > 
 </div>
 
-<script>
-    AColorPicker.from('.picker')
-    .on('change', (picker, color) => {
-        console.log(color)
-    })
-    .on('coloradd', (picker, color) => {
-        console.log(color)
-      // color added: color
-      // modified palette: picker.palette
-    })
-    .on('colorremove', (picker, color) => {
-        console.log(color)
-      // color removed: color
-      // modified palette: picker.palette
-    });
-</script>
+<script src="/scripts/sendColorToDevice.js"></script>
