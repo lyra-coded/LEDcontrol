@@ -10,6 +10,7 @@
   font-family: 'Gotham Rounded';
   font-size: 20px;
   color: var(--color-text-light);
+  text-align: center;
 }
 
 *, *::before, *::after {
@@ -17,8 +18,10 @@
 }
 
 body {
-  background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light));
+  /* background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light)); */
+  display: flex;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(3, 1, 1, 0.08);
+  text-align: center;
 }
 
 .container {
@@ -36,6 +39,24 @@ body {
   font-weight: 500;
 }
 
+/* Glassy Container */
+.glass-container {
+  display: flex;
+  background: rgba(255, 255, 255, 0.2); /* Transparent white */
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for depth */
+  padding: 30px;
+  max-width: 400px;
+  text-align: center;
+  color: #ffffff; /* Text contrast */
+  height: 45vh;
+  justify-content: center;  /* Centers horizontally */
+  align-items: center;      /* Centers vertically */
+}
+
 .error-message {
   color: hsl(var(--color-danger-hue), 100%, 50%);
 }
@@ -43,5 +64,56 @@ body {
 /* probably need to add .picker here */
 .picker {
   display: inline-block;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(3, 1, 1, 0.08);
+  border-radius: 15px;
+
+  /* box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(3, 1, 1, 0.08); */
+}
+
+/* Base Link Style */
+a {
+  font-family: Arial, sans-serif;
+  background-color: #e0e0e0;
+  text-decoration: none;              /* Removes the underline */
+  color: #007BFF;                     /* Modern, accessible blue */
+  font-weight: 500;                   /* Medium weight for clarity */
+  transition: color 0.3s ease,        /* Smooth color change */
+              border-bottom 0.3s ease;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px;
+}
+
+/* Hover and Focus State */
+a:hover, a:focus {
+  color: #0056b3;                     /* Darker blue for contrast */
+/*  border-bottom: 2px solid #0056b3;    Subtle underline effect */
+  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+  text-decoration: none;              /* Prevent default underline */
+}
+
+/* Active State */
+a:active {
+  color: #003f7f;                     /* Even darker blue */
+}
+
+/* Optional: Underline Animation */
+/* a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #007BFF;
+  transition: width 0.3s ease;
+} */
+
+a:hover::after {
+  width: 100%;
 }
