@@ -3,25 +3,20 @@
 @import 'shared/header.css';
 @import 'shared/buttons.css';
 @import 'shared/form.css';
-@import 'shared/author.css';
-@import 'shared/books.css';
 
 :root {
-  font-family: 'Gotham Rounded';
+  font-family: Arial, sans-serif;
   font-size: 20px;
   color: var(--color-text-light);
   text-align: center;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
 body {
   /* background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light)); */
   display: flex;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(3, 1, 1, 0.08);
-  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -34,14 +29,17 @@ body {
   margin: 0 2rem;
 }
 
-.page-header {
-  font-size: 2rem;
-  font-weight: 500;
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10 px;
 }
 
 /* Glassy Container */
 .glass-container {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   background: rgba(255, 255, 255, 0.2); /* Transparent white */
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(10px) saturate(180%);
@@ -52,9 +50,6 @@ body {
   max-width: 400px;
   text-align: center;
   color: #ffffff; /* Text contrast */
-  height: 45vh;
-  justify-content: center;  /* Centers horizontally */
-  align-items: center;      /* Centers vertically */
 }
 
 .error-message {
@@ -64,7 +59,7 @@ body {
 /* probably need to add .picker here */
 .picker {
   display: inline-block;
-  border-radius: 15px;
+  border-radius: 25%;
 
   /* box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(3, 1, 1, 0.08); */
 }
@@ -78,22 +73,26 @@ a {
   font-weight: 500;                   /* Medium weight for clarity */
   transition: color 0.3s ease,        /* Smooth color change */
               border-bottom 0.3s ease;
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+              -4px -4px 8px rgba(255, 255, 255, .5),
+              inset 2px 2px 4px rgba(255, 255, 255, .1),
+              2px 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
   padding: 20px;
   margin: 20px;
+  letter-spacing: 2px;
 }
 
 /* Hover and Focus State */
 a:hover, a:focus {
   color: #0056b3;                     /* Darker blue for contrast */
-/*  border-bottom: 2px solid #0056b3;    Subtle underline effect */
-  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
   background-color: #e0e0e0;
   border: none;
   border-radius: 12px;
-  box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
-  padding: 10px 20px;
-  font-size: 16px;
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+              inset -4px -4px 8px rgba(255, 255, 255, .5),
+              inset 2px 2px 4px rgba(255, 255, 255, .1),
+              inset 2px 2px 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out;
   text-decoration: none;              /* Prevent default underline */
