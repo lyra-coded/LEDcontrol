@@ -5,6 +5,12 @@ const { ReadlineParser } = require('@serialport/parser-readline')
 const axios = require('axios')
 const router = express.Router()
 
+// port constant for reading from serial device
+const port = new SerialPort({
+    path: '/dev/ttyACM0',
+    baudRate: 9600
+})
+
 // allows express to parse http msgs with plain text
 router.use(express.text())
 
@@ -18,18 +24,20 @@ router.post('/handleColorFromFrontend', (req, res) => {
 });
 
 // maybe add a button to top right of page to connect to arduino
-// listen for serial data
-const port = new SerialPort({
-  path: '/dev/ttyACM0',
-  baudRate: 9600
-})
+
+router.post('/connectToDevice', () => {
+    // Read data from serial device
+
+});
 
 // Handle any errors that occur when opening the serial port
 port.on('error', (err) => {
-  console.error('Serial port error:', err.message);
+    console.error('Serial port error:', err.message);
 });
 
+// when user connects to page
 router.get('/', (req, res) => {
+    // render page
     res.render('ledProfiles/index')
     // Read data from serial device
     const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }))

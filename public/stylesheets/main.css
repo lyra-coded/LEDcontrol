@@ -31,7 +31,7 @@ body {
 
 nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10 px;
 }
 
@@ -78,13 +78,18 @@ a {
               inset 2px 2px 4px rgba(255, 255, 255, .1),
               2px 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
-  padding: 20px;
+  padding: 5px;
   margin: 20px;
   letter-spacing: 2px;
 }
 
+.header-img-button {
+  width: 30px;
+  height: 30px; 
+}
+
 /* Hover and Focus State */
-a:hover, a:focus {
+a:hover, a:focus, .header-img-button:hover, .header-img-button:focus {
   color: #0056b3;                     /* Darker blue for contrast */
   background-color: #e0e0e0;
   border: none;
