@@ -8,6 +8,8 @@
 #define REDPIN 5
 #define GREENPIN 6
 #define BLUEPIN 3
+
+#define prod
  
 #define FADESPEED 6     // make this higher to slow down
 
@@ -24,15 +26,16 @@ void setup() {
  
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);                       // wait for a second
+  delay(250);                       // wait for a second
   digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second
+  delay(250);                       // wait for a second
 
   Serial.println("NERD!");
-  if (Serial.available()) {
+  while (Serial.available()) {
     serialInputVal = Serial.read();
-    Serial.println(serialInputVal);
+    Serial.print(serialInputVal);
   }
+  Serial.println("");
   int r, g, b;
 //  analogWrite(BLUEPIN, b);
 //  analogWrite(REDPIN, r);
@@ -40,6 +43,8 @@ void loop() {
 
 // example for color swirl
   // fade from blue to violet
+
+#ifndef prod
   for (r = 0; r < 256; r++) { 
     analogWrite(REDPIN, r);
     delay(FADESPEED);
@@ -69,4 +74,5 @@ void loop() {
     analogWrite(GREENPIN, g);
     delay(FADESPEED);
   }
+#endif // prod
 }

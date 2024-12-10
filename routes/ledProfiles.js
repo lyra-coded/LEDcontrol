@@ -6,7 +6,7 @@ const axios = require('axios')
 const router = express.Router()
 
 // port constant for reading from serial device
-const port = new SerialPort({
+const serialDevice = new SerialPort({
     path: '/dev/ttyACM0',
     baudRate: 9600
 })
@@ -18,7 +18,8 @@ router.use(express.text())
 // the route already has /ledProfiles in it!?!?
 router.post('/handleColorFromFrontend', (req, res) => {
     console.log("running post handler")
-    console.log(req.body)
+    // console.log(req.body)
+    serialDevice.write(req.body)
 
     // res.status(200).send('Color data received: ' + data);
 });
@@ -31,7 +32,7 @@ router.post('/connectToDevice', () => {
 });
 
 // Handle any errors that occur when opening the serial port
-port.on('error', (err) => {
+serialDevice.on('error', (err) => {
     console.error('Serial port error:', err.message);
 });
 
@@ -40,7 +41,7 @@ router.get('/', (req, res) => {
     // render page
     res.render('ledProfiles/index')
     // Read data from serial device
-    const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }))
+    const parser = serialDevice.pipe(new ReadlineParser({ delimiter: '\r\n' }))
     parser.on('data', (serialdata) => {
         console.log(serialdata);
         readData = serialdata;
