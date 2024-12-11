@@ -18,9 +18,8 @@ router.use(express.text())
 // the route already has /ledProfiles in it!?!?
 router.post('/handleColorFromFrontend', (req, res) => {
     console.log("running post handler")
-    // console.log(req.body)
+    console.log(req.body)
     serialDevice.write(req.body)
-
     // res.status(200).send('Color data received: ' + data);
 });
 
@@ -43,7 +42,7 @@ router.get('/', (req, res) => {
     // Read data from serial device
     const parser = serialDevice.pipe(new ReadlineParser({ delimiter: '\r\n' }))
     parser.on('data', (serialdata) => {
-        console.log(serialdata);
+        console.log(decimalToAscii(serialdata));
         readData = serialdata;
     });
 })
@@ -52,4 +51,11 @@ router.post('/', (req, res) => {
     res.send('value')
 })
 
+// convert dec to ascii from arduino
+function decimalToAscii(decimalSeries) {
+    return decimalSeries
+        .split(',') // split string at delimiter
+        .map(num => String.fromCharCode(Number(num))) // Convert each decimal to ASCII
+        .join(''); // Join the characters into a string
+}
 module.exports = router
