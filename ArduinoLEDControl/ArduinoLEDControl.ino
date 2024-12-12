@@ -45,20 +45,17 @@ bool parseColorFromSerialData(rgbColor& color, String textInput) {
   int startVal = textInput.indexOf("(", 0);
   int endVal = textInput.indexOf(",", 0);
 
-  Serial.println("Start/end vals:");
-  Serial.write(startVal);
-  Serial.write(endVal);
+  color.red = textInput.substring(startVal+1, endVal).toInt();
+  startVal = endVal;
+  endVal = textInput.indexOf(",", startVal+1);
+  color.green = textInput.substring(startVal+1, endVal).toInt();
+  Serial.println(textInput.substring(startVal+1, endVal));
+  // Serial.print(textInput.substring(startVal-1, endVal+1));
+  startVal = endVal;
+  endVal = textInput.indexOf(")", startVal);
+  color.blue = textInput.substring(startVal+1, endVal).toInt();
+  startVal = endVal;
 
-  color.red = textInput.substring(startVal+1, endVal-1).toInt();
-  startVal = endVal;
-  endVal = textInput.indexOf(",", startVal);
-  color.green = textInput.substring(startVal+1, endVal-1).toInt();
-  startVal = endVal;
-  endVal = textInput.indexOf(",", startVal);
-  color.blue = textInput.substring(startVal+1, endVal-1).toInt();
-  startVal = endVal;
-  endVal = textInput.indexOf(",", startVal);
-  
   Serial.print("red: ");
   Serial.print(color.red);
   Serial.print("green: ");
@@ -119,18 +116,19 @@ void loop() {
     Serial.println("");
     rgbString.remove(0, rgbString.length());
     msgReadSuccess = false;
+
+    analogWrite(BLUEPIN, inputColor.blue);
+    analogWrite(REDPIN, inputColor.red);
+    analogWrite(GREENPIN, inputColor.green);
   }
+
+
   
 #ifndef prod
   int r = 0;
   int g = 0;
   int b = 0;
 #endif // prod
-
-  // parseColorFromSerialData(&inputColor, );
-  // analogWrite(BLUEPIN, inputColor.blue);
-  // analogWrite(REDPIN, inputColor.red);
-  // analogWrite(GREENPIN, inputColor.green);
 
 #ifndef prod
 // example for color swirl
